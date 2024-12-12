@@ -1,6 +1,7 @@
 package com.fernando.investimento_simplificado.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -26,6 +28,54 @@ public class User {
 
     @Column(name = "email")
     private String email;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setCreationTimeStamp(Instant creationTimeStamp) {
+        this.creationTimeStamp = creationTimeStamp;
+    }
+
+    public void setUpdateTimeStamp(Instant updateTimeStamp) {
+        UpdateTimeStamp = updateTimeStamp;
+    }
+
+    public Instant getCreationTimeStamp() {
+        return creationTimeStamp;
+    }
+
+    public Instant getUpdateTimeStamp() {
+        return UpdateTimeStamp;
+    }
 
     @Column(name = "password")
     private String password;
