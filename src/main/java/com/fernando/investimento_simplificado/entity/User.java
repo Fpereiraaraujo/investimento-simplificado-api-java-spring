@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -76,6 +77,17 @@ public class User {
     public Instant getUpdateTimeStamp() {
         return UpdateTimeStamp;
     }
+
+    public void setAccount(List<Account> account) {
+        this.account = account;
+    }
+
+    public List<Account> getAccount() {
+        return account;
+    }
+
+    @OneToMany(mappedBy = "user")
+    private List<Account> account;
 
     @Column(name = "password")
     private String password;

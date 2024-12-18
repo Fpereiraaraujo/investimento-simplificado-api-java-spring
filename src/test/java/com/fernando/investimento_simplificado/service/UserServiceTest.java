@@ -10,13 +10,18 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import com.fernando.investimento_simplificado.entity.User;
+import java.time.Instant;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
     //padrao triple A
-    //Arrange
+    //    Arrange
     //Act
     //Assert
 
@@ -32,8 +37,27 @@ class UserServiceTest {
         @DisplayName("should create a user with successful")
         void shouldCreateAUser() {
             //arrange
-            var input = new CreateUserDto("username", "email", "123")
-            service.createUser(input);
+            var user = new User(
+                    UUID.randomUUID(),
+                    "sername",
+                    "email",
+                    "password",
+                    Instant.now(),
+                    null
+            );
+            doReturn(user).when(repository).save(any());
+
+            var input = new CreateUserDto("username", "email", "123");
+
+
+            //Act
+            var output  = service.createUser(input);
+
+            //Assert
+            assertNotNull(output);
+
+
+
 
         }
     }
